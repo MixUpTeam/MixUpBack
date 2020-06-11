@@ -20,7 +20,10 @@ In which folder/file, on what page etc
 - [ ] step one
 - [ ] step two
 - [ ] step three
-
+- [ ] test locally
+- [ ] run rubocop
+- [ ] update readme
+- [ ] rebase on master
 **DOC**
 
 links of articles that explains how to do, official API/ gem doc etc
