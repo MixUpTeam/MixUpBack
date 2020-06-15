@@ -1,0 +1,105 @@
+AllCops:
+  Exclude:
+    - "bin/**/*"
+    - "config/**/*"
+    - "db/**/*"
+    - "app/channels/**/*"
+    - "test/**/*"
+    - "spec/**/*"
+    - "tmp/**/*"
+
+# Styles
+Style/GuardClause:
+  MinBodyLength: 5
+
+Style/Documentation:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/ExpandPathArguments:
+  Enabled: true
+
+Style/IfUnlessModifier:
+  Enabled: true
+
+Style/NumericLiterals:
+  Strict: false
+
+Style/StringLiterals:
+  EnforcedStyle: single_quotes
+
+Style/ClassAndModuleChildren:
+  EnforcedStyle: compact
+
+Style/TrailingCommaInHashLiteral:
+  EnabledStyle: no_comma
+
+# Metrics
+Metrics/MethodLength:
+  Max: 20
+
+Metrics/BlockLength:
+  Max: 35
+
+Metrics/AbcSize:
+  Enabled: false
+
+Metrics/CyclomaticComplexity:
+  Enabled: false
+
+Metrics/PerceivedComplexity:
+  Enabled: false
+
+# Layouts
+Layout/IndentationConsistency:
+  EnforcedStyle: normal
+
+Layout/IndentationStyle:
+  EnforcedStyle: tabs
+
+Layout/IndentationWidth:
+  Width: 1
+
+Layout/LineLength:
+  Max: 120
+
+Layout/IndentationStyle:
+  Enabled: false
+
+Layout/EmptyLineAfterGuardClause:
+  Enabled: true
+
+Layout/EmptyLines:
+  Enabled: true
+
+Layout/EmptyLinesAroundAccessModifier:
+  Enabled: true
+
+Layout/ExtraSpacing:
+  AllowForAlignment: true
+
+Layout/SpaceAfterColon:
+  Enabled: true
+
+Layout/SpaceAroundOperators:
+  AllowForAlignment: true
+
+Layout/ArgumentAlignment:
+  EnforcedStyle: with_first_argument
+
+Layout/EmptyLinesAroundBlockBody:
+  EnforcedStyle: no_empty_lines
+
+Layout/EmptyLinesAroundClassBody:
+  EnforcedStyle: no_empty_lines
+
+Layout/MultilineOperationIndentation:
+  EnforcedStyle: aligned
+
+Layout/SpaceInsideArrayLiteralBrackets:
+  EnforcedStyle: no_space
+
+Layout/TrailingEmptyLines:
+  EnforcedStyle: final_newline
