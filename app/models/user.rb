@@ -7,7 +7,7 @@ class User < ApplicationRecord
 					:recoverable, :rememberable, :validatable
 
 	has_one :user_profile, dependent: :destroy
-	has_many :playlists, foreign_key: :owner_id
+	has_many :playlists, foreign_key: :owner_id, dependent: :destroy
 
 	def create_profile    
 		UserProfile.create(user: self)    
