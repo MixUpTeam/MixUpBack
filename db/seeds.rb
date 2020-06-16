@@ -21,7 +21,7 @@ puts "generating playlists"
 
 
 10.times do
-	Playlist.create(name: Faker::Music.genre, owner: User.all.shuffle.sample)
+	Playlist.create(name: Faker::Music.genre, owner: User.all.sample)
 end
 
 puts "#{Playlist.count} playlists generated"
