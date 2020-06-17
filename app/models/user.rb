@@ -8,6 +8,7 @@ class User < ApplicationRecord
 
 	has_one :user_profile, dependent: :destroy
 	has_many :playlists, foreign_key: :owner_id, dependent: :destroy
+	has_many :track_playlists, foreign_key: :added_by_id, dependent: :destroy
 
 	def create_profile
 		UserProfile.create(user: self)
