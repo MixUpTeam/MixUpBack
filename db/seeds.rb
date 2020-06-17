@@ -14,3 +14,14 @@ n = 1
 end
 
 puts "#{User.count} users generated"
+
+# Playlist
+
+puts "generating playlists"
+
+
+10.times do
+	Playlist.create(name: Faker::Music.genre, owner: User.all.sample)
+end
+
+puts "#{Playlist.count} playlists generated"
