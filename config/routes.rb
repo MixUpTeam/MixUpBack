@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :track_playlists
   resources :playlists
   resources :user_profiles
   devise_for :users
