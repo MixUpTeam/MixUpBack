@@ -3,4 +3,8 @@ class TrackPlaylist < ApplicationRecord
 
   belongs_to :added_by, class_name: 'User'
   belongs_to :playlist
+
+  def added_by_username
+    added_by.username
+  end
 end
