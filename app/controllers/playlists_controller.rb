@@ -64,7 +64,7 @@ class PlaylistsController < ApplicationController
         id: playlist.owner_id,
         username: playlist.owner_username
       },
-      entries: playlist.track_playlists.map { |tp| single_track_playlist_response(tp) }
+      entries: playlist.track_playlists.map { |track_playlist| single_track_playlist_response(track_playlist) }
     }
   end
 end
