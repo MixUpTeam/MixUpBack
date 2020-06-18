@@ -16,11 +16,11 @@ class TrackPlaylistsController < ApplicationController
   # POST /track_playlists
   def create
     @track_playlist = TrackPlaylist.new(track_playlist_params)
-
+ 
     if @track_playlist.save
-      render json: @track_playlist, status: :created, location: @track_playlist
+      render json: single_track_playlist_response(@track_playlist)
     else
-      render json: @track_playlist.errors, status: :unprocessable_entity
+      render json: readable_validation_errors(@track_playlist)
     end
   end
 

@@ -8,4 +8,11 @@ class ApplicationController < ActionController::API
       }
     })
   end
+
+  def readable_validation_errors(resource)
+    { 
+      status: "error",
+      messages: resource.errors.map {|k, v| "#{k.capitalize} #{v}"}
+    }
+  end
 end
