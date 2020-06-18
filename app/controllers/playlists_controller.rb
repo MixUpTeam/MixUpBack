@@ -9,7 +9,7 @@ class PlaylistsController < ApplicationController
  end
 
  def show
-  render json: @playlist
+  render json: single_playlist_response(@playlist)
  end
 
  # POST /playlists
@@ -39,7 +39,6 @@ class PlaylistsController < ApplicationController
 
  private
 
- # Use callbacks to share common setup or constraints between actions.
   def set_playlist
     @playlist = Playlist.find(params[:id])
   rescue
@@ -55,4 +54,17 @@ class PlaylistsController < ApplicationController
  def playlist_params
   params.require(:playlist).permit(:name, :owner_id)
  end
+
+  def single_playlist_response(playlist)
+    {
+      status: "success",
+      id: playlist.id,
+      name: playlist.name,
+      owner: {
+        id: playlist.owner_id,
+        username: playlist.owner_username
+      },
+      entries: playlist.track_playlists.map { |tp| single_track_playlist_response(tp) }
+    }
+  end
 end
