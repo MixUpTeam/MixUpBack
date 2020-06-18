@@ -1,7 +1,6 @@
 class PlaylistsController < ApplicationController
  before_action :set_playlist, only: %i[show update destroy]
 
- # GET /playlists
  def index
   @playlists = Playlist.all
 
@@ -12,18 +11,16 @@ class PlaylistsController < ApplicationController
   render json: single_playlist_response(@playlist)
  end
 
- # POST /playlists
  def create
   @playlist = Playlist.new(playlist_params)
 
   if @playlist.save
-   render json: @playlist, status: :created, location: @playlist
+   render json: single_playlist_response(@playlist)
   else
-   render json: @playlist.errors, status: :unprocessable_entity
+   render json: readable_validation_errors(@playlist)
   end
  end
 
- # PATCH/PUT /playlists/1
  def update
   if @playlist.update(playlist_params)
    render json: @playlist
@@ -32,7 +29,6 @@ class PlaylistsController < ApplicationController
   end
  end
 
- # DELETE /playlists/1
  def destroy
   @playlist.destroy
  end
@@ -50,12 +46,11 @@ class PlaylistsController < ApplicationController
     }
   end
 
- # Only allow a trusted parameter "white list" through.
  def playlist_params
   params.require(:playlist).permit(:name, :owner_id)
  end
 
-  def single_playlist_response(playlist)
+ def single_playlist_response(playlist)
     {
       status: "success",
       id: playlist.id,
@@ -66,5 +61,5 @@ class PlaylistsController < ApplicationController
       },
       entries: playlist.track_playlists.map { |track_playlist| single_track_playlist_response(track_playlist) }
     }
-  end
+ end
 end
