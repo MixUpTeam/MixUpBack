@@ -8,7 +8,6 @@ class PlaylistsController < ApplicationController
   render json: @playlists
  end
 
- # GET /playlists/1
  def show
   render json: @playlist
  end
@@ -41,9 +40,16 @@ class PlaylistsController < ApplicationController
  private
 
  # Use callbacks to share common setup or constraints between actions.
- def set_playlist
-  @playlist = Playlist.find(params[:id])
- end
+  def set_playlist
+    @playlist = Playlist.find(params[:id])
+  rescue
+    render json: {
+      status: "error",
+      messages: [
+        "The record you ask for does not exist."
+      ]
+    }
+  end
 
  # Only allow a trusted parameter "white list" through.
  def playlist_params
