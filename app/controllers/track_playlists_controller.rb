@@ -18,23 +18,9 @@ class TrackPlaylistsController < ApplicationController
     @track_playlist = TrackPlaylist.new(track_playlist_params)
  
     if @track_playlist.save
-      render json: {
-        id: @track_playlist.id,
-        track_spotify_id: @track_playlist.track_spotify_id,
-        up_votes: nil,
-        down_votes: nil,
-        user_already_voted_on_entry: false,
-        added_by: {
-          id: @track_playlist.added_by_id,
-          username: @track_playlist.added_by.user_profile.username
-        },
-        is_played: @track_playlist.is_played,
-        is_playing: @track_playlist.is_playing,
-        created_at: @track_playlist.created_at
-        }, 
-        status: :created, location: @track_playlist
+      render json: single_track_playlist_response(@track_playlist)
     else
-      render json: @track_playlist.errors, status: :unprocessable_entity
+      render json: readable_validation_errors(@track_playlist)
     end
   end
 
