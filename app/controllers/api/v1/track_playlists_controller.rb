@@ -1,6 +1,6 @@
 module Api 
   module V1
-    class TrackPlaylistsController < ApplicationController
+    class TrackPlaylistsController < Api::ApiController
       before_action :set_track_playlist, only: [:show, :update, :destroy]
 
       def index

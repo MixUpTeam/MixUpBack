@@ -1,6 +1,6 @@
 module Api 
 	module V1
-		class UserProfilesController < ApplicationController
+		class UserProfilesController < Api::ApiController
 			before_action :set_user_profile, only: %i[show update destroy]
 
 			def index
@@ -17,7 +17,7 @@ module Api
 				@user_profile = UserProfile.new(user_profile_params)
 
 				if @user_profile.save
-					render json: @user_profile, status: :created, location: @user_profile
+					render json: @user_profile, status: :created
 				else
 					render json: @user_profile.errors, status: :unprocessable_entity
 				end

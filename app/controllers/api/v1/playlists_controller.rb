@@ -1,6 +1,6 @@
 module Api 
   module V1
-    class PlaylistsController < ApplicationController
+    class PlaylistsController < Api::ApiController
       before_action :set_playlist, only: %i[show update destroy]
 
       def index
@@ -17,7 +17,7 @@ module Api
         @playlist = Playlist.new(playlist_params)
 
         if @playlist.save
-          render json: @playlist, status: :created, location: @playlist
+          render json: @playlist, status: :created
         else
           render json: @playlist.errors, status: :unprocessable_entity
         end
@@ -67,3 +67,4 @@ module Api
     end
   end
 end
+
