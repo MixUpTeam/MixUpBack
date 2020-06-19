@@ -17,9 +17,9 @@ module Api
         @playlist = Playlist.new(playlist_params)
 
         if @playlist.save
-          render json: @playlist, status: :created
+          render json: single_playlist_response(@playlist)
         else
-          render json: @playlist.errors, status: :unprocessable_entity
+          render json: readable_validation_errors(@playlist)
         end
       end
 
