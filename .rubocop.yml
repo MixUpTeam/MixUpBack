@@ -35,8 +35,7 @@ Style/ClassAndModuleChildren:
 
 Style/TrailingCommaInHashLiteral:
   EnabledStyle: no_comma
-
-# Metrics
+  
 Metrics/MethodLength:
   Max: 20
 
@@ -52,7 +51,6 @@ Metrics/CyclomaticComplexity:
 Metrics/PerceivedComplexity:
   Enabled: false
 
-# Layouts
 Layout/IndentationConsistency:
   EnforcedStyle: normal
 
@@ -60,13 +58,13 @@ Layout/IndentationStyle:
   EnforcedStyle: tabs
 
 Layout/IndentationWidth:
-  Width: 1
+  Width: 2
 
 Layout/LineLength:
   Max: 120
 
 Layout/IndentationStyle:
-  Enabled: false
+  Enabled: true
 
 Layout/EmptyLineAfterGuardClause:
   Enabled: true
