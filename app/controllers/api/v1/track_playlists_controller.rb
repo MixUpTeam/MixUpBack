@@ -1,7 +1,7 @@
-module Api 
+module Api
   module V1
     class TrackPlaylistsController < Api::ApiController
-      before_action :set_track_playlist, only: [:show, :update, :destroy]
+      before_action :set_track_playlist, only: %i[show update destroy]
 
       def index
         @track_playlists = TrackPlaylist.all
@@ -15,7 +15,7 @@ module Api
 
       def create
         @track_playlist = TrackPlaylist.new(track_playlist_params)
-    
+
         if @track_playlist.save
           render json: single_track_playlist_response(@track_playlist)
         else

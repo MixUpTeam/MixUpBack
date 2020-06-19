@@ -1,4 +1,4 @@
-module Api 
+module Api
   module V1
     class PlaylistsController < Api::ApiController
       before_action :set_playlist, only: %i[show update destroy]
@@ -39,11 +39,11 @@ module Api
 
       def set_playlist
         @playlist = Playlist.find(params[:id])
-      rescue
+      rescue StandardError
         render json: {
-          status: "error",
+          status: 'error',
           messages: [
-            "The record you ask for does not exist."
+            'The record you ask for does not exist.'
           ]
         }
       end
@@ -54,7 +54,7 @@ module Api
 
       def single_playlist_response(playlist)
         {
-          status: "success",
+          status: 'success',
           id: playlist.id,
           name: playlist.name,
           owner: {
@@ -67,4 +67,3 @@ module Api
     end
   end
 end
-

@@ -1,18 +1,18 @@
 class User < ApplicationRecord
-	after_create :create_profile
+  after_create :create_profile
 
-	# Include default devise modules. Others available are:
-	# :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-	devise :database_authenticatable, :registerable,
-					   :recoverable, :rememberable, :validatable
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :validatable
 
-	has_one :user_profile, dependent: :destroy
-	has_many :playlists, foreign_key: :owner_id, dependent: :destroy
-	has_many :track_playlists, foreign_key: :added_by_id, dependent: :destroy
+  has_one :user_profile, dependent: :destroy
+  has_many :playlists, foreign_key: :owner_id, dependent: :destroy
+  has_many :track_playlists, foreign_key: :added_by_id, dependent: :destroy
 
   delegate :username, to: :user_profile
 
-	def create_profile
-		UserProfile.create(user: self)
-	end
+  def create_profile
+    UserProfile.create(user: self)
+  end
 end
