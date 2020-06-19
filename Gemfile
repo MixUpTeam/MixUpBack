@@ -14,15 +14,15 @@ gem 'table_print', git: 'git://github.com/julienemo/table_print.git', branch: '8
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 group :development, :test do
-	gem 'factory_bot_rails', '~> 5.2.0'
-	gem 'pry', '~> 0.13.1'
-	gem 'rspec-rails', '~> 3.6'
-	gem 'rubocop', '>= 0.85.0'
+  gem 'factory_bot_rails', '~> 5.2.0'
+  gem 'pry', '~> 0.13.1'
+  gem 'rspec-rails', '~> 3.6'
+  gem 'rubocop', '>= 0.85.0'
 end
 
 group :development do
-	gem 'dotenv-rails'
-	gem 'listen', '~> 3.2'
-	gem 'spring'
-	gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'dotenv-rails'
+  gem 'listen', '~> 3.2'
+  gem 'spring'
+  gem 'spring-watcher-listen', '~> 2.0.0'
 end
