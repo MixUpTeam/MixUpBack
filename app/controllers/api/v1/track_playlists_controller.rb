@@ -75,6 +75,12 @@ module Api
       def set_voter
         voter_id = params.require(:track_playlist).permit(:voted_by_id)[:voted_by_id]
         @voter = User.find(voter_id)
+      rescue ActiveRecord::RecordNotFound
+        render json: {
+          status: 'error',
+          messages: ['The record you are looking for does not exist.']
+        }
+
       end
 
       def track_playlist_params
