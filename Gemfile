@@ -28,3 +28,9 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
+group :test do
+  gem 'database_cleaner-active_record', '~> 1.8.0'
+  gem 'factory_bot_rails', '~> 5.2.0'
+  gem 'rspec-rails', '~> 3.6'
+  gem 'rubocop-rspec', '~> 1.40.0', require: false
+end

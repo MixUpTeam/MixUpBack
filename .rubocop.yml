@@ -7,6 +7,7 @@ AllCops:
     - "test/**/*"
     - "spec/**/*"
     - "tmp/**/*"
+    - "vendor/**/*"
 
 # Styles
 Style/GuardClause:
@@ -31,10 +32,10 @@ Style/StringLiterals:
   EnforcedStyle: single_quotes
 
 Style/ClassAndModuleChildren:
-  EnforcedStyle: compact
+  EnforcedStyle: nested
 
 Style/TrailingCommaInHashLiteral:
-  EnabledStyle: no_comma
+  Enabled: true
   
 Metrics/MethodLength:
   Max: 20
@@ -63,7 +64,7 @@ Layout/IndentationWidth:
 Layout/LineLength:
   Max: 120
 
-Layout/IndentationStyle:
+Layout/IndentationStyle:	
   Enabled: true
 
 Layout/EmptyLineAfterGuardClause:
