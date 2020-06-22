@@ -1,9 +1,9 @@
 GIT
-  remote: git://github.com/julienemo/table_print.git
-  revision: ede74503dbaa9937aacaa817cd6e97b766221a0b
-  branch: 84_bug_no_method_error_in_ruby_2.7.1
+  remote: git://github.com/arches/table_print.git
+  revision: 591affe5283973474ce89cdcc70c1b42b4cf6352
+  branch: master
   specs:
-    table_print (1.5.6)
+    table_print (1.5.7)
 
 GEM
   remote: https://rubygems.org/
@@ -63,6 +63,8 @@ GEM
       minitest (~> 5.1)
       tzinfo (~> 1.1)
       zeitwerk (~> 2.2, >= 2.2.2)
+    acts_as_votable (0.6.0)
+      rails (>= 3.2.11)
     ast (2.4.1)
     bcrypt (3.1.13)
     bootsnap (1.4.6)
@@ -240,6 +242,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  acts_as_votable (~> 0.6.0)
   bootsnap (>= 1.4.2)
   devise-jwt (~> 0.6.0)
   dotenv-rails
