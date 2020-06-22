@@ -1,6 +1,5 @@
 FactoryBot.define do
   factory :playlist do
-    name { "MyString" }
-    owner { nil }
+    name { "fake_playlist from factoryBot" }
   end
 end

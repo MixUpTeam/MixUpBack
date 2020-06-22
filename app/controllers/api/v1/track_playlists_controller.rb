@@ -36,9 +36,9 @@ module Api
       def destroy
         @track_playlist.destroy
         render json: {
-          status: "success",
+          status: 'success',
           id: @track_playlist.id,
-          messages: ["The record has been deleted."]
+          messages: ['The record has been deleted.']
         }
       end
 
@@ -58,8 +58,8 @@ module Api
         @track_playlist = TrackPlaylist.find(params[:track_playlist_id])
       rescue ActiveRecord::RecordNotFound
         render json: {
-          status: "error",
-          messages: ["The record you are looking for does not exist."]
+          status: 'error',
+          messages: ['The record you are looking for does not exist.']
         }
       end
 
@@ -67,14 +67,19 @@ module Api
         @track_playlist = TrackPlaylist.find(params[:id])
       rescue ActiveRecord::RecordNotFound
         render json: {
-          status: "error",
-          messages: ["The record you are looking for does not exist."]
+          status: 'error',
+          messages: ['The record you are looking for does not exist.']
         }
       end
 
       def set_voter
         voter_id = params.require(:track_playlist).permit(:voted_by_id)[:voted_by_id]
         @voter = User.find(voter_id)
+      rescue ActiveRecord::RecordNotFound
+        render json: {
+          status: 'error',
+          messages: ['The record you are looking for does not exist.']
+        }
       end
 
       def track_playlist_params

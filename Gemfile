@@ -12,12 +12,10 @@ gem 'puma', '~> 4.1'
 gem 'rack-cors', '~> 1.1', '>= 1.1.1'
 gem 'rails', '~> 6.0.3', '>= 6.0.3.1'
 gem 'table_print', git: 'git://github.com/arches/table_print.git', branch: 'master'
-gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
+gem 'tzinfo-data', '>= 2.0.0', platforms: %i[mingw mswin x64_mingw jruby]
 
 group :development, :test do
-  gem 'factory_bot_rails', '~> 5.2.0'
   gem 'pry', '~> 0.13.1'
-  gem 'rspec-rails', '~> 3.6'
   gem 'rubocop', '>= 0.85.0'
 end
 
@@ -28,3 +26,9 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
+group :test do
+  gem 'database_cleaner-active_record', '~> 1.8.0'
+  gem 'factory_bot_rails', '~> 5.2.0'
+  gem 'rspec-rails', '~> 3.6'
+  gem 'rubocop-rspec', '~> 1.40.0', require: false
+end
