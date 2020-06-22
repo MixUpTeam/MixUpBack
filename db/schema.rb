@@ -71,6 +71,7 @@ ActiveRecord::Schema.define(version: 2020_06_22_085151) do
     t.bigint "voter_id"
     t.boolean "vote_flag"
     t.string "vote_scope"
+    t.integer "vote_weight"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["votable_id", "votable_type", "vote_scope"], name: "index_votes_on_votable_id_and_votable_type_and_vote_scope"
