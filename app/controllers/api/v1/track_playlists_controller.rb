@@ -2,6 +2,8 @@ module Api
   module V1
     class TrackPlaylistsController < Api::ApiController
       before_action :set_track_playlist, only: %i[show update destroy]
+      before_action :set_voter, only: %i[up_vote down_vote]
+      before_action :set_track_playlist_for_votes, only: %i[up_vote down_vote]
 
       def index
         @track_playlists = TrackPlaylist.all
@@ -35,10 +37,29 @@ module Api
         @track_playlist.destroy
       end
 
+      def up_vote
+        @track_playlist.liked_by @voter
+        render json: single_track_playlist_response(@track_playlist)
+      end
+
+      def down_vote
+        @track_playlist.downvote_from @voter
+        render json: single_track_playlist_response(@track_playlist)
+      end
+
       private
+
+      def set_track_playlist_for_votes
+        @track_playlist = TrackPlaylist.find(params[:track_playlist_id])
+      end
 
       def set_track_playlist
         @track_playlist = TrackPlaylist.find(params[:id])
+      end
+
+      def set_voter
+        voter_id = params.require(:track_playlist).permit(:voted_by_id)[:voted_by_id]
+        @voter = User.find(voter_id)
       end
 
       def track_playlist_params
