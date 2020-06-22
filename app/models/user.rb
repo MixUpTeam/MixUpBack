@@ -12,6 +12,8 @@ class User < ApplicationRecord
 
   delegate :username, to: :user_profile
 
+  acts_as_voter
+
   def create_profile
     UserProfile.create(user: self)
   end
