@@ -35,6 +35,11 @@ module Api
 
       def destroy
         @track_playlist.destroy
+        render json: {
+          status: "success",
+          id: @track_playlist.id,
+          messages: ["The record has been deleted."]
+        }
       end
 
       def up_vote
@@ -51,10 +56,20 @@ module Api
 
       def set_track_playlist_for_votes
         @track_playlist = TrackPlaylist.find(params[:track_playlist_id])
+      rescue ActiveRecord::RecordNotFound
+        render json: {
+          status: "error",
+          messages: ["The record you are looking for does not exist."]
+        }
       end
 
       def set_track_playlist
         @track_playlist = TrackPlaylist.find(params[:id])
+      rescue ActiveRecord::RecordNotFound
+        render json: {
+          status: "error",
+          messages: ["The record you are looking for does not exist."]
+        }
       end
 
       def set_voter
