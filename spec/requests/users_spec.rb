@@ -73,4 +73,13 @@ RSpec.describe "User auth", type: :request do
     end
     
   end
+
+  describe "delete /users/sign_out.json" do
+    it "returns 204 response with out body" do
+      user = create(:user_1)
+      sign_in user
+      delete destroy_user_session_path(user)
+      expect(response).to have_http_status(204)
+    end   
+  end
 end
