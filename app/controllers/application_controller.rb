@@ -1,4 +1,8 @@
 class ApplicationController < ActionController::API
+  include ActionController::MimeResponds
+
+  respond_to :json
+
   def single_track_playlist_response(track_playlist)
     has_voted_up = User.first.voted_up_on? track_playlist # TODO: To be modified with current_user
     has_voted_down = User.first.voted_down_on? track_playlist # TODO: To be modified with current_user
