@@ -2,7 +2,6 @@ module Api
   module V1
     class TrackPlaylistsController < Api::ApiController
       before_action :set_track_playlist, only: %i[show update destroy]
-      before_action :set_voter, only: %i[up_vote down_vote]
       before_action :set_track_playlist_for_votes, only: %i[up_vote down_vote]
 
       def index
@@ -16,7 +15,7 @@ module Api
       end
 
       def create
-        @track_playlist = TrackPlaylist.new(track_playlist_params)
+        @track_playlist = TrackPlaylist.new(track_playlist_params.merge(added_by: @user))
 
         if @track_playlist.save
           render json: single_track_playlist_response(@track_playlist)
@@ -43,12 +42,12 @@ module Api
       end
 
       def up_vote
-        @track_playlist.liked_by @voter
+        @track_playlist.liked_by @user
         render json: single_track_playlist_response(@track_playlist)
       end
 
       def down_vote
-        @track_playlist.downvote_from @voter
+        @track_playlist.downvote_from @user
         render json: single_track_playlist_response(@track_playlist)
       end
 
@@ -72,18 +71,8 @@ module Api
         }
       end
 
-      def set_voter
-        voter_id = params.require(:track_playlist).permit(:voted_by_id)[:voted_by_id]
-        @voter = User.find(voter_id)
-      rescue ActiveRecord::RecordNotFound
-        render json: {
-          status: 'error',
-          messages: ['The record you are looking for does not exist.']
-        }
-      end
-
       def track_playlist_params
-        params.require(:track_playlist).permit(:added_by_id, :track_spotify_id, :playlist_id, :is_played, :is_playing)
+        params.require(:track_playlist).permit(:track_spotify_id, :playlist_id, :is_played, :is_playing)
       end
     end
   end

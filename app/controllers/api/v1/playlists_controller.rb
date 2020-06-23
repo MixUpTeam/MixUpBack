@@ -4,9 +4,8 @@ module Api
       before_action :set_playlist, only: %i[show update destroy]
 
       def index
-        @playlists = Playlist.all
-
-        render json: @playlists
+        @playlists = @user.playlists
+        render json: single_playlist_response(@playlist)
       end
 
       def show
@@ -14,7 +13,7 @@ module Api
       end
 
       def create
-        @playlist = Playlist.new(playlist_params)
+        @playlist = Playlist.new(playlist_params.merge(owner: @user))
 
         if @playlist.save
           render json: single_playlist_response(@playlist)
@@ -49,7 +48,7 @@ module Api
       end
 
       def playlist_params
-        params.require(:playlist).permit(:name, :owner_id)
+        params.require(:playlist).permit(:name)
       end
 
       def single_playlist_response(playlist)

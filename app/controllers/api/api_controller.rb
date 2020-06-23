@@ -2,7 +2,6 @@ module Api
   class ApiController < ApplicationController
     before_action :authenticate_user!
     rescue_from ActionController::ParameterMissing, with: :missing_params_error_response
-    # TODO: (note for the front)need to catch ActionDispatch::Http::Parameters::ParseError in axios
 
     def missing_params_error_response(exception)
       render json: {
