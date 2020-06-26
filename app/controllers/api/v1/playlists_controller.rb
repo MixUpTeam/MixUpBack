@@ -60,7 +60,9 @@ module Api
             id: playlist.owner_id,
             username: playlist.owner_username
           },
-          entries: playlist.track_playlists.map { |track_playlist| single_track_playlist_response(track_playlist) }
+          current_track: playlist.track_playlists.find_by(is_played: true),
+          entries: playlist.track_playlists.in_queue.map { |track_playlist| single_track_playlist_response(track_playlist) },
+          history: playlist.track_playlists.history.map { |track_playlist| single_track_playlist_response(track_playlist) }
         }
       end
     end

@@ -6,6 +6,9 @@ class TrackPlaylist < ApplicationRecord
 
   acts_as_votable
 
+  scope :in_queue, -> { where(is_played: false, is_playing: false).order(cached_votes_score: :desc) }
+  scope :history, -> { where(is_played: true, is_playing: false) }
+
   def added_by_username
     added_by.username
   end

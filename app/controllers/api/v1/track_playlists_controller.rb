@@ -2,7 +2,7 @@ module Api
   module V1
     class TrackPlaylistsController < Api::ApiController
       before_action :set_track_playlist, only: %i[show update destroy]
-      before_action :set_track_playlist_for_votes, only: %i[up_vote down_vote]
+      before_action :set_track_playlist_for_votes, only: %i[up_vote down_vote finish_track]
 
       def index
         @track_playlists = TrackPlaylist.all
@@ -49,6 +49,13 @@ module Api
       def down_vote
         @track_playlist.downvote_from @user
         render json: single_track_playlist_response(@track_playlist)
+      end
+
+      def finish_track
+        @track_playlist.update(is_played: true, is_playing: false)
+        next_track = @track_playlist.playlist.track_playlists.in_queue[0]
+        next_track.update(is_played: false, is_playing: true)
+        render json: single_track_playlist_response(next_track)
       end
 
       private
