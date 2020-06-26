@@ -11,4 +11,12 @@ class Playlist < ApplicationRecord
   def tracks
     track_playlists.map(&:track_spotify_id)
   end
+
+  def current_track
+    if in_queue.length.zero?
+      return track_playlist.first
+    else
+      return in_queue.first
+    end
+  end
 end
