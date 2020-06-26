@@ -5,6 +5,7 @@ Rails.application.routes.draw do
       resources :track_playlists do
         post '/up_vote' => 'track_playlists#up_vote'
         post '/down_vote' => 'track_playlists#down_vote'
+        get '/finish_track' => 'track_playlists#finish_track'
       end
       resources :playlists
       resources :user_profiles
