@@ -13,10 +13,10 @@ class Playlist < ApplicationRecord
   end
 
   def current_track
-    if in_queue.length.zero?
+    if track_playlists.in_queue.length.zero?
       return track_playlist.first
     else
-      return in_queue.first
+      return track_playlists.in_queue.first
     end
   end
 end

@@ -59,7 +59,7 @@ module Api
             track.update(is_playing: false, is_played: false)
           end
         end
-        next_track = @track_playlist.playlist.track_playlists.in_queue[0]
+        next_track = @track_playlist.playlist.current_track
         next_track.update(is_played: false, is_playing: true)
         render json: single_track_playlist_response(next_track)
       end
