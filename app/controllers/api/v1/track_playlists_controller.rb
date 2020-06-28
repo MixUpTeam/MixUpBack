@@ -53,15 +53,7 @@ module Api
 
       def finish_track
         @track_playlist.update(is_played: true, is_playing: false)
-        same_list_tracks = @track_playlist.playlist.track_playlists
-        if same_list_tracks.all? { |el| (el.is_played == true) }
-          same_list_tracks.each do |track|
-            track.update(is_playing: false, is_played: false)
-          end
-        end
-        next_track = @track_playlist.playlist.current_track
-        next_track.update(is_played: false, is_playing: true)
-        render json: single_track_playlist_response(next_track)
+        render json: single_track_playlist_response(@track_playlist)
       end
 
       private
